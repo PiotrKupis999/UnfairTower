@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
@@ -14,12 +15,13 @@ public class GameControllerScript : MonoBehaviour
     public GameObject background;
     public GameObject steps;
 
-    [Header("Buttons")]
+    [Header("UI")]
     public GameObject left_but;
     public GameObject right_but;
     public GameObject info_bar;
+    public GameObject score;
 
-    private Color transparency = new(255f, 255f, 255f, 50f);
+    private Color transparency = new(255f, 255f, 255f, 0.1f);
      
 
 
@@ -38,15 +40,19 @@ public class GameControllerScript : MonoBehaviour
 
         if (player.transform.position.y > 1f)
         {
-            is_moving = true;
+            
             //background.GetComponent<Animator>().enabled = true;
             if (!info_bar.IsDestroyed())
             {
+                score.GetComponent<Text>().enabled = true;
                 Destroy(info_bar);
+                is_moving = true;
+                left_but.GetComponent<Image>().color = transparency;
+                right_but.GetComponent<Image>().color = transparency;
             }
+            score.GetComponent<Text>().text = BrokerScript.level.ToString();
 
-            left_but.GetComponent<Image>().color = transparency;
-            right_but.GetComponent<Image>().color = transparency;
+            
         }
 
 

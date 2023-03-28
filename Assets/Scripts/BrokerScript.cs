@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class BrokerScript : MonoBehaviour
 {
+
+    public static int level = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +29,12 @@ public class BrokerScript : MonoBehaviour
         {
             SceneManager.LoadScene(0);
             GameControllerScript.is_moving = false;
+            level = 0;
         }
         else
         {
             Destroy(collision.gameObject);
+            level++;
 
         }
 
