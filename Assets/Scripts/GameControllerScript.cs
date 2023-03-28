@@ -72,8 +72,9 @@ public class GameControllerScript : MonoBehaviour
 
         }
         
-        if (best_score+1 < next_level)
+        if (best_score + 1 < next_level)
         {
+            best_score_text.color = Color.green;
             best_score = level;
         }
         

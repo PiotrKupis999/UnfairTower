@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEditor.SearchService;
 using UnityEngine;
 
 public class StepSpawnerScript : MonoBehaviour
 {
     public float max_time;
-    private Queue<GameObject> queue = new Queue<GameObject>(); 
     public GameObject step;
     public GameObject background;
 
@@ -14,10 +14,12 @@ public class StepSpawnerScript : MonoBehaviour
     public float min_length;
     public float max_length;
 
+    private int step_count;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        step_count = 7;
     }
 
 
@@ -33,8 +35,18 @@ public class StepSpawnerScript : MonoBehaviour
         if (CheckPointScript.make_steps)
         {
             GameObject new_step = Instantiate(step);
-            new_step.transform.localScale = new Vector3(Random.Range(min_length, max_length), new_step.transform.localScale.y, new_step.transform.localScale.z);
             new_step.transform.position = transform.position + new Vector3(Random.Range(-range, range), 0, 0);
+            new_step.transform.localScale = new Vector3(Random.Range(min_length, max_length), new_step.transform.localScale.y, new_step.transform.localScale.z);
+
+            step_count++;
+
+            if (step_count % 50 == 0)
+            {
+                new_step.transform.position = transform.position;
+                new_step.transform.localScale = new Vector3(5.80f, new_step.transform.localScale.y, new_step.transform.localScale.z);
+                new_step.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+
 
             CheckPointScript.make_steps = false;
         }
