@@ -22,6 +22,9 @@ public class GameControllerScript : MonoBehaviour
     public GameObject score;
 
     private Color transparency = new(255f, 255f, 255f, 0.1f);
+
+    public static float level;
+    private float next_level;
      
 
 
@@ -30,7 +33,7 @@ public class GameControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        next_level = 0;
     }
 
     // Update is called once per frame
@@ -38,7 +41,7 @@ public class GameControllerScript : MonoBehaviour
     {
         
 
-        if (player.transform.position.y > 1f)
+        if (player.transform.position.y > -0.7f)
         {
             
             //background.GetComponent<Animator>().enabled = true;
@@ -49,10 +52,18 @@ public class GameControllerScript : MonoBehaviour
                 is_moving = true;
                 left_but.GetComponent<Image>().color = transparency;
                 right_but.GetComponent<Image>().color = transparency;
-            }
-            score.GetComponent<Text>().text = BrokerScript.level.ToString();
+                score.GetComponent<Text>().text = "2";
 
+            }
             
+        }
+
+        if (player.transform.position.y > next_level)
+        {
+            level++;
+            next_level += 1.034095f;
+            score.GetComponent<Text>().text = level.ToString();
+
         }
 
 

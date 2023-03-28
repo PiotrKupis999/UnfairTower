@@ -121,13 +121,11 @@ public class PlayerScript : MonoBehaviour
         if (Mathf.Abs(rb.velocity.x) > 2)
         {
             x_jump = 0;
-            Debug.Log("HALO");
             rb.velocity = Vector2.up * jump_force2;
             
         }
         else if(x_jump > 3)
         {
-            Debug.Log("HALO2");
 
             rb.velocity = Vector2.up * jump_force;
             rb.rotation = 0;
