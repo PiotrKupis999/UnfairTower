@@ -20,14 +20,20 @@ public class GameControllerScript : MonoBehaviour
     public GameObject right_but;
     public GameObject info_bar;
     public GameObject score;
+    public Text best_score_text;
 
     private Color transparency = new(255f, 255f, 255f, 0.1f);
 
-    public static float level;
+    public static int level;
+    public static int best_score;
     private float next_level;
-     
 
 
+    private void Awake()
+    {
+        PlayerPrefs.GetInt("best_score", best_score);
+
+    }
 
 
     // Start is called before the first frame update
@@ -65,6 +71,14 @@ public class GameControllerScript : MonoBehaviour
             score.GetComponent<Text>().text = level.ToString();
 
         }
+        
+        if (best_score+1 < next_level)
+        {
+            best_score = level;
+        }
+        
+
+        best_score_text.text = "best score:\n" + best_score.ToString();
 
 
         background.transform.position = new Vector3(-0.15f, Camera.main.transform.position.y, 1f);

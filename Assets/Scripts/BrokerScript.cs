@@ -26,9 +26,14 @@ public class BrokerScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(0);
             GameControllerScript.is_moving = false;
+
+
+            PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
+            
             GameControllerScript.level = 0;
+            SceneManager.LoadScene(0);
+            
         }
         else
         {
