@@ -31,7 +31,7 @@ public class BrokerScript : MonoBehaviour
 
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
             
-            GameControllerScript.level = 0;
+            //GameControllerScript.level = 0;
             SceneManager.LoadScene(0);
             
         }

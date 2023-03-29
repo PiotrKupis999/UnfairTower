@@ -8,6 +8,7 @@ public class StepSpawnerScript : MonoBehaviour
 {
     public float max_time;
     public GameObject step;
+    public GameObject stepPoint;
     public GameObject background;
 
     public float range;
@@ -19,7 +20,7 @@ public class StepSpawnerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        step_count = 7;
+        step_count = 8;
     }
 
 
@@ -34,13 +35,18 @@ public class StepSpawnerScript : MonoBehaviour
 
         if (CheckPointScript.make_steps)
         {
+            
+            GameObject new_stepPoint = Instantiate(stepPoint);
+            new_stepPoint.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+
+
             GameObject new_step = Instantiate(step);
             new_step.transform.position = transform.position + new Vector3(Random.Range(-range, range), 0, 0);
             new_step.transform.localScale = new Vector3(Random.Range(min_length, max_length), new_step.transform.localScale.y, new_step.transform.localScale.z);
 
             step_count++;
 
-            if (step_count % 50 == 0)
+            if (step_count % 10 == 0)
             {
                 new_step.transform.position = transform.position;
                 new_step.transform.localScale = new Vector3(5.80f, new_step.transform.localScale.y, new_step.transform.localScale.z);

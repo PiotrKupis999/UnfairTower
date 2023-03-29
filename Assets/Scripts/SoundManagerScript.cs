@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
+    public enum Sounds
+    {
+        stepSound
+    }
+
     AudioSource audiosrc;
+
+    public AudioClip clip;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
     private void Awake()
     {
@@ -21,6 +30,15 @@ public class SoundManagerScript : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public void PlaySound(Sounds sound)
+    {
+        switch(sound)
+        {
+            case Sounds.stepSound:
+                audiosrc.PlayOneShot(clip);
+                break;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

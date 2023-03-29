@@ -102,14 +102,21 @@ public class PlayerScript : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.isTrigger = true;
-        jumpable = false;
+        if (collision.CompareTag("Step"))
+        {
+            collision.isTrigger = true;
+            jumpable = false;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.isTrigger = false;
-        jumpable = true;
+        if (collision.CompareTag("Step"))
+        {
+            collision.isTrigger = false;
+            jumpable = true;
+        }
 
     }
 

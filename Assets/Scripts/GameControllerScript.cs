@@ -15,6 +15,10 @@ public class GameControllerScript : MonoBehaviour
     public GameObject background;
     public GameObject steps;
 
+    SoundManagerScript soundManager;
+    AudioSource audioSource;
+
+
     [Header("UI")]
     public GameObject left_but;
     public GameObject right_but;
@@ -40,6 +44,9 @@ public class GameControllerScript : MonoBehaviour
     void Start()
     {
         next_level = 0;
+        level = 0;
+        audioSource = GetComponent<AudioSource>();
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
     }
 
     // Update is called once per frame
@@ -58,21 +65,17 @@ public class GameControllerScript : MonoBehaviour
                 is_moving = true;
                 left_but.GetComponent<Image>().color = transparency;
                 right_but.GetComponent<Image>().color = transparency;
-                score.GetComponent<Text>().text = "2";
 
             }
-            
-        }
 
-        if (player.transform.position.y > next_level)
-        {
-            level++;
-            next_level += 1.034095f;
             score.GetComponent<Text>().text = level.ToString();
+            //soundManager.PlaySound(SoundManagerScript.Sounds.stepSound);
+
 
         }
-        
-        if (best_score + 1 < next_level)
+
+
+        if (best_score < level)
         {
             best_score_text.color = Color.green;
             best_score = level;
