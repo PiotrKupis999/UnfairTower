@@ -102,14 +102,21 @@ public class PlayerScript : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.isTrigger = true;
-        jumpable = false;
+        if (collision.CompareTag("Step"))
+        {
+            collision.isTrigger = true;
+            jumpable = false;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.isTrigger = false;
-        jumpable = true;
+        if (collision.CompareTag("Step"))
+        {
+            collision.isTrigger = false;
+            jumpable = true;
+        }
 
     }
 
@@ -121,13 +128,11 @@ public class PlayerScript : MonoBehaviour
         if (Mathf.Abs(rb.velocity.x) > 2)
         {
             x_jump = 0;
-            Debug.Log("HALO");
             rb.velocity = Vector2.up * jump_force2;
             
         }
         else if(x_jump > 3)
         {
-            Debug.Log("HALO2");
 
             rb.velocity = Vector2.up * jump_force;
             rb.rotation = 0;

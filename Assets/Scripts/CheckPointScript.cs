@@ -23,6 +23,9 @@ public class CheckPointScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        make_steps = true;
+        if (collision.CompareTag("Step"))
+        {
+            make_steps = true;
+        }
     }
 }
