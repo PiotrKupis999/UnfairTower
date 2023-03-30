@@ -68,6 +68,7 @@ public class GameControllerScript : MonoBehaviour
                 right_but.GetComponent<Image>().color = transparency;
             }
 
+
             score.GetComponent<Text>().text = level.ToString();
             //soundManager.PlaySound(SoundManagerScript.Sounds.stepSound);
 
@@ -85,7 +86,7 @@ public class GameControllerScript : MonoBehaviour
         best_score_text.text = "best score:\n" + best_score.ToString();
 
 
-        background.transform.position = new Vector3(-0.15f, Camera.main.transform.position.y, 1f);
+        background.transform.position = new Vector3(0, Camera.main.transform.position.y, 1f);
 
         
     }

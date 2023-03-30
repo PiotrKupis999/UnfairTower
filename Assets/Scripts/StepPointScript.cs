@@ -6,12 +6,13 @@ public class StepPointScript : MonoBehaviour
 {
 
     public GameObject player;
+    public SoundManagerScript soundManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class StepPointScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameControllerScript.level++;
-            Debug.Log("+1");
+            soundManager.PlaySound(SoundManagerScript.Sounds.stepSound);
             Destroy(this.gameObject);
         }
         
