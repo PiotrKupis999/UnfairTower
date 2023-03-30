@@ -19,16 +19,32 @@ public class MenuCotroller : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void SwitchButton(TextMeshProUGUI text)
+    public void SwitchButtonMusic(TextMeshProUGUI text)
     {
         if (text.GetComponent<TextMeshProUGUI>().enabled)
         {
             text.GetComponent<TextMeshProUGUI>().enabled = false;
+            soundManager.PlayMusic();
         }
         else
         {
             text.GetComponent<TextMeshProUGUI>().enabled = true;
+            soundManager.StopMusic();
 
+        }
+    }
+
+    public void SwitchButtonSounds(TextMeshProUGUI text)
+    {
+        if (text.GetComponent<TextMeshProUGUI>().enabled)
+        {
+            text.GetComponent<TextMeshProUGUI>().enabled = false;
+            SoundManagerScript.soundsEnable = true;
+        }
+        else
+        {
+            text.GetComponent<TextMeshProUGUI>().enabled = true;
+            SoundManagerScript.soundsEnable = true;
         }
     }
 
@@ -41,5 +57,7 @@ public class MenuCotroller : MonoBehaviour
     {
         GameControllerScript.is_moving = false;
     }
+
+
 
 }

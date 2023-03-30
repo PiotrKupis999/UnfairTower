@@ -804,11 +804,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2124262136669507345}
         m_TargetAssemblyTypeName: MenuCotroller, Assembly-CSharp
-        m_MethodName: SwitchButton
-        m_Mode: 2
+        m_MethodName: ClickSound
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 272918699}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -816,11 +816,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2124262136669507345}
         m_TargetAssemblyTypeName: MenuCotroller, Assembly-CSharp
-        m_MethodName: ClickSound
-        m_Mode: 1
+        m_MethodName: SwitchButtonMusic
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 272918699}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1312,11 +1312,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2124262136669507345}
         m_TargetAssemblyTypeName: MenuCotroller, Assembly-CSharp
-        m_MethodName: SwitchButton
-        m_Mode: 2
+        m_MethodName: ClickSound
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1798536720}
-          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1324,11 +1324,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2124262136669507345}
         m_TargetAssemblyTypeName: MenuCotroller, Assembly-CSharp
-        m_MethodName: ClickSound
-        m_Mode: 1
+        m_MethodName: SwitchButtonSounds
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1798536720}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
