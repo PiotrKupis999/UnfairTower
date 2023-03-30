@@ -26,6 +26,8 @@ public class GameControllerScript : MonoBehaviour
     public GameObject score;
     public Text best_score_text;
 
+
+
     private Color transparency = new(255f, 255f, 255f, 0.1f);
 
     public static int level;
@@ -36,10 +38,9 @@ public class GameControllerScript : MonoBehaviour
     private void Awake()
     {
         PlayerPrefs.GetInt("best_score", best_score);
-
     }
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +66,6 @@ public class GameControllerScript : MonoBehaviour
                 is_moving = true;
                 left_but.GetComponent<Image>().color = transparency;
                 right_but.GetComponent<Image>().color = transparency;
-
             }
 
             score.GetComponent<Text>().text = level.ToString();
