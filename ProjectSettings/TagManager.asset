@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Step
   - SoundManager
+  - Canvas
+  - ContinueButton
+  - RestartBars
   layers:
   - Default
   - TransparentFX

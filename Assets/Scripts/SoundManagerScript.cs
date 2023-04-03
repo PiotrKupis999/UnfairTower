@@ -34,7 +34,7 @@ public class SoundManagerScript : MonoBehaviour
     {
         audiosrc = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
-        PlayMusic();
+        //PlayMusic();
     }
 
     public void PlayMusic()

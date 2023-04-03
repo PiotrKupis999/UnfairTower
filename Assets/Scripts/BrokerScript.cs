@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class BrokerScript : MonoBehaviour
 {
-
+    public static bool fall;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        fall = false;
     }
 
     // Update is called once per frame
@@ -30,10 +30,16 @@ public class BrokerScript : MonoBehaviour
 
 
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
-            
+
             //GameControllerScript.level = 0;
-            SceneManager.LoadScene(0);
-            
+            //SceneManager.LoadScene(0);
+
+            collision.gameObject.transform.position = new Vector3(0, Camera.main.transform.position.y + 2f, transform.position.z);
+
+
+            fall = true;
+
+
         }
         else
         {

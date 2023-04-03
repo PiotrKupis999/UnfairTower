@@ -77,6 +77,15 @@ public class MenuCotroller : MonoBehaviour
         GameControllerScript.is_moving = false;
     }
 
+    public void CountineGame()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
+        GameControllerScript.is_moving = true;
+        BrokerScript.fall = false;
+        GameControllerScript.first_try = false;
+        GameControllerScript.one_time = true;
+        
+    }
 
 
 }
