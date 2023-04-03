@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BrokerScript : MonoBehaviour
 {
-
+    public static bool fall = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +32,13 @@ public class BrokerScript : MonoBehaviour
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
             
             //GameControllerScript.level = 0;
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
+
+            collision.gameObject.transform.position = Camera.main.transform.position + Vector3.up*2;
             
+            fall = true;
+
+
         }
         else
         {

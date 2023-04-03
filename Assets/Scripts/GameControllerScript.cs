@@ -23,6 +23,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject left_but;
     public GameObject right_but;
     public GameObject info_bar;
+    public GameObject restart_bar;
     public GameObject score;
     public Text best_score_text;
 
@@ -32,7 +33,6 @@ public class GameControllerScript : MonoBehaviour
 
     public static int level;
     public static int best_score;
-    private float next_level;
 
 
     private void Awake()
@@ -44,7 +44,6 @@ public class GameControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        next_level = 0;
         level = 0;
         audioSource = GetComponent<AudioSource>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
@@ -88,6 +87,14 @@ public class GameControllerScript : MonoBehaviour
 
         background.transform.position = new Vector3(0, Camera.main.transform.position.y, 1f);
 
+        if (BrokerScript.fall)
+        {
+            GameObject new_restart_bar = Instantiate(restart_bar);
+            new_restart_bar.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
+            new_restart_bar.transform.position = Vector3.Lerp(new Vector3(-1000f,Camera.main.transform.position.y, Camera.main.transform.position.z), Camera.main.transform.position, Time.deltaTime*2);
+        }
+
+        
         
     }
 
