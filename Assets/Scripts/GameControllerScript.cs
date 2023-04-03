@@ -30,6 +30,9 @@ public class GameControllerScript : MonoBehaviour
 
 
     private Color transparency = new(255f, 255f, 255f, 0.1f);
+    public static bool one_time;
+    public static bool first_try;
+    private float continue_time;
 
     public static int level;
     public static int best_score;
@@ -44,6 +47,10 @@ public class GameControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        one_time = true;
+        first_try = true;
+        continue_time = 9f;
+
         level = 0;
         audioSource = GetComponent<AudioSource>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
@@ -87,15 +94,36 @@ public class GameControllerScript : MonoBehaviour
 
         background.transform.position = new Vector3(0, Camera.main.transform.position.y, 1f);
 
-        if (BrokerScript.fall)
+        if (BrokerScript.fall && one_time)
         {
             GameObject new_restart_bar = Instantiate(restart_bar);
             new_restart_bar.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-            new_restart_bar.transform.position = Vector3.Lerp(new Vector3(-1000f,Camera.main.transform.position.y, Camera.main.transform.position.z), Camera.main.transform.position, Time.deltaTime*2);
+            //new_restart_bar.GetComponentInChildren<Text>().text = "HUJ";
+            one_time = false;
         }
 
-        
-        
+        if(GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
+        {
+
+            continue_time -= Time.deltaTime;
+            GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = Mathf.Clamp(Mathf.CeilToInt(continue_time), 0, 9) + "  continue";
+
+            if (continue_time<0)
+            {
+                GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
+
+            }
+
+        }
+        else if (GameObject.FindGameObjectWithTag("ContinueButton") != null && !first_try)
+        {
+            GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
+
+        }
+
+
+
+
     }
 
 

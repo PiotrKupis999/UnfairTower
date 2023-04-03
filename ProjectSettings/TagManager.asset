@@ -8,6 +8,8 @@ TagManager:
   - Step
   - SoundManager
   - Canvas
+  - ContinueButton
+  - RestartBars
   layers:
   - Default
   - TransparentFX
