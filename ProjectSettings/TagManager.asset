@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - ContinueButton
   - RestartBars
+  - AdsManager
   layers:
   - Default
   - TransparentFX

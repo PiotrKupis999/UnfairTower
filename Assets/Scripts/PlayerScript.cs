@@ -93,6 +93,11 @@ public class PlayerScript : MonoBehaviour
         {
             Jump();
         }
+
+        if (!GameControllerScript.is_moving)
+        {
+
+        }
         
 
 

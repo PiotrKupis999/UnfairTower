@@ -17,6 +17,7 @@ public class GameControllerScript : MonoBehaviour
 
     SoundManagerScript soundManager;
     AudioSource audioSource;
+    AdsScript adsManager;
 
 
     [Header("UI")]
@@ -54,6 +55,7 @@ public class GameControllerScript : MonoBehaviour
         level = 0;
         audioSource = GetComponent<AudioSource>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
+        adsManager = GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>();
     }
 
     // Update is called once per frame
@@ -72,6 +74,9 @@ public class GameControllerScript : MonoBehaviour
                 is_moving = true;
                 left_but.GetComponent<Image>().color = transparency;
                 right_but.GetComponent<Image>().color = transparency;
+
+                adsManager.Initialize();
+                adsManager.LoadRewardedAd();
             }
 
 
@@ -98,11 +103,12 @@ public class GameControllerScript : MonoBehaviour
         {
             GameObject new_restart_bar = Instantiate(restart_bar);
             new_restart_bar.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-            //new_restart_bar.GetComponentInChildren<Text>().text = "HUJ";
             one_time = false;
+            
+
         }
 
-        if(GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
+        if (GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
         {
 
             continue_time -= Time.deltaTime;

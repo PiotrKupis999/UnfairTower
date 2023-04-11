@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
 public class MenuCotroller : MonoBehaviour
 {
     SoundManagerScript soundManager;
+    AdsScript adsManager;
     public TextMeshProUGUI text1;
     public TextMeshProUGUI text2;
     public static int music_settings;
@@ -16,6 +18,7 @@ public class MenuCotroller : MonoBehaviour
     {
 
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
+        adsManager = GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>();
 
 
     }
@@ -60,8 +63,9 @@ public class MenuCotroller : MonoBehaviour
         else
         {
             text.GetComponent<TextMeshProUGUI>().enabled = true;
-            SoundManagerScript.soundsEnable = true;
+            SoundManagerScript.soundsEnable = false;
             sound_settings = 1;
+            
         }
 
 
@@ -79,11 +83,18 @@ public class MenuCotroller : MonoBehaviour
 
     public void CountineGame()
     {
-        Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
-        GameControllerScript.is_moving = true;
-        BrokerScript.fall = false;
-        GameControllerScript.first_try = false;
-        GameControllerScript.one_time = true;
+        /*
+        adsManager.DebugLog("ELO");
+        */
+        if (!Advertisement.isShowing)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
+            GameControllerScript.is_moving = true;
+            BrokerScript.fall = false;
+            GameControllerScript.first_try = false;
+            GameControllerScript.one_time = true;
+        }
+        
         
     }
 
