@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
             
             //float touchPos1 = Input.GetTouch(1).position.x;
 
-            if (touchPos < 585)
+            if (touchPos < Display.main.systemWidth/2)
             {
 
                 rb.AddForce(Vector2.left * Time.deltaTime * speed);
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour
 
 
             }
-            else if (touchPos >= 585 )
+            else if (touchPos >= Display.main.systemWidth / 2)
             {
                 rb.AddForce(Vector2.right * Time.deltaTime * speed);
 
