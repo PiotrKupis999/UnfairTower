@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,11 +32,25 @@ public class BrokerScript : MonoBehaviour
 
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
 
+            RestartingScript.playerEndPosition = collision.gameObject.transform.position;
             //GameControllerScript.level = 0;
             //SceneManager.LoadScene(0);
 
-            collision.gameObject.transform.position = new Vector3(0, Camera.main.transform.position.y + 2f, transform.position.z);
+            /*
+            float desiredDuration = 10f;
+            float elapsedTime = 0;
+            Vector3 startPosition = collision.gameObject.transform.position;
+            Vector3 endPosition = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 2f, startPosition.z);
+            while (desiredDuration>elapsedTime)
+            {
+                float percentageComplete = elapsedTime/desiredDuration;
+                collision.gameObject.transform.position = Vector3.Lerp(startPosition, endPosition, percentageComplete);
+                elapsedTime += Time.deltaTime;
+                Debug.Log(elapsedTime);
+            }
+            */
 
+            
 
             fall = true;
 
