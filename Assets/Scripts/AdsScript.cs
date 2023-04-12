@@ -2,14 +2,15 @@
 using System.Collections;
 using UnityEngine.Advertisements;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    public string GAME_ID = "5241697"; //replace with your gameID from dashboard. note: will be different for each platform.
+    public string GAME_ID = "5241696"; //replace with your gameID from dashboard. note: will be different for each platform.
 
-    private const string BANNER_PLACEMENT = "banner";
-    private const string VIDEO_PLACEMENT = "video";
-    private const string REWARDED_VIDEO_PLACEMENT = "rewardedVideo";
+    private const string BANNER_PLACEMENT = "Banner_Android";
+    private const string VIDEO_PLACEMENT = "Interstitial_Android";
+    private const string REWARDED_VIDEO_PLACEMENT = "Rewarded_Android";
 
     [SerializeField] private BannerPosition bannerPosition = BannerPosition.BOTTOM_CENTER;
 
@@ -19,6 +20,18 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
     //utility wrappers for debuglog
     public delegate void DebugEvent(string msg);
     public static event DebugEvent OnDebugLog;
+
+
+    private void Start()
+    {
+        Initialize();
+        LoadRewardedAd();
+    }
+
+    private void Update()
+    {
+        OnUnityAdsAdLoaded("Rewarded_Android");
+    }
 
     public void Initialize()
     {
@@ -46,7 +59,6 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     public void LoadRewardedAd()
     {
-        Debug.Log("ELO");
         Advertisement.Load(REWARDED_VIDEO_PLACEMENT, this);
     }
 
@@ -78,7 +90,18 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
+        /*
         DebugLog($"Load Success: {placementId}");
+        Debug.Log("Ad Loaded: " + placementId);
+        */
+        if (placementId.Equals(REWARDED_VIDEO_PLACEMENT))
+        {
+            Debug.Log("Mozna: " + placementId);
+
+            // Configure the button to call the ShowAd() method when clicked:
+            ShowRewardedAd();
+            // Enable the button for users to click:
+        }
     }
 
     public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)

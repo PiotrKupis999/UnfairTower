@@ -54,7 +54,6 @@ public class GameControllerScript : MonoBehaviour
         level = 0;
         audioSource = GetComponent<AudioSource>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
-        adsManager = GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>();
     }
 
     // Update is called once per frame
@@ -74,8 +73,7 @@ public class GameControllerScript : MonoBehaviour
                 left_but.GetComponent<Image>().color = transparency;
                 right_but.GetComponent<Image>().color = transparency;
 
-                adsManager.Initialize();
-                adsManager.LoadRewardedAd();
+
             }
 
 

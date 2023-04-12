@@ -18,7 +18,6 @@ public class MenuCotroller : MonoBehaviour
     {
 
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
-        adsManager = GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>();
 
 
     }
@@ -83,9 +82,7 @@ public class MenuCotroller : MonoBehaviour
 
     public void CountineGame()
     {
-        /*
-        adsManager.DebugLog("ELO");
-        */
+        
         if (!Advertisement.isShowing)
         {
             Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
@@ -94,9 +91,46 @@ public class MenuCotroller : MonoBehaviour
             GameControllerScript.first_try = false;
             GameControllerScript.one_time = true;
         }
+
         
         
     }
+    /*
+    public void PlayAd()
+    {
+        OnUnityAdsAdLoaded("Rewarded_Android");
+    }
 
+    public void OnUnityAdsAdLoaded(string adUnitId)
+    {
+        // Optionally execute code if the Ad Unit successfully loads content.
+        Advertisement.Show(adUnitId);
 
+    }
+
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsShowStart(string placementId)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsShowClick(string placementId)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
+    {
+        throw new System.NotImplementedException();
+    }
+    */
 }
