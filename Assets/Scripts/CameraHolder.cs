@@ -6,7 +6,7 @@ public class CameraHolder : MonoBehaviour
 {
 
     public GameObject player;
-    public float camera_speed;
+    public static float camera_speed = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +26,13 @@ public class CameraHolder : MonoBehaviour
         {
             transform.position += Vector3.up * camera_speed * Time.deltaTime;
         }
-        
+        /*
+        if((GameControllerScript.level + 1) % 10 == 0)
+        {
+            camera_speed *= 1.5f;
+
+        }
+        */
 
 
     }

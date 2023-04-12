@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.iOS.Xcode;
 using UnityEngine;
 
 public class StepSpawnerScript : MonoBehaviour
@@ -13,12 +15,29 @@ public class StepSpawnerScript : MonoBehaviour
     public float min_length;
     public float max_length;
 
+    public Material material1;
+    public Material material2;
+    public Material material3;
+    public Material material4;
+    public Material material5;
+    public Material material6;
+    public Material material7;
+    public Material material8;
+
     private int step_count;
+    private int material_number = 0;
+    private Material current_material;
+
+
+
+    private Material[] materials;
 
     // Start is called before the first frame update
     void Start()
     {
         step_count = 8;
+        materials = new Material[] { material1, material2, material3, material4, material5, material6, material7, material8 };
+        current_material = materials[material_number];
     }
 
 
@@ -41,14 +60,28 @@ public class StepSpawnerScript : MonoBehaviour
             GameObject new_step = Instantiate(step);
             new_step.transform.position = transform.position + new Vector3(Random.Range(-range, range), 0, 0);
             new_step.transform.localScale = new Vector3(Random.Range(min_length, max_length), new_step.transform.localScale.y, new_step.transform.localScale.z);
+            new_step.GetComponent<SpriteRenderer>().material = current_material;
+            new_step.GetComponent<SpriteRenderer>().material.mainTextureScale = new Vector2(new_step.transform.localScale.x, new_step.transform.localScale.y);
+
 
             step_count++;
 
-            if (step_count % 10 == 0)
+            if (step_count % 25 == 0)
             {
                 new_step.transform.position = transform.position;
                 new_step.transform.localScale = new Vector3(5.80f, new_step.transform.localScale.y, new_step.transform.localScale.z);
-                new_step.GetComponent<SpriteRenderer>().color = Color.green;
+                if(step_count % 50 == 0 && material_number<7)
+                {
+                    material_number++;
+                    current_material = materials[material_number];
+                    new_step.GetComponent<SpriteRenderer>().material = current_material;
+                    new_step.GetComponent<SpriteRenderer>().material.mainTextureScale = new Vector2(new_step.transform.localScale.x, new_step.transform.localScale.y);
+
+
+                }
+
+
+
             }
 
 
