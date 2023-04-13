@@ -31,8 +31,6 @@ public class GameControllerScript : MonoBehaviour
 
     private Color transparency = new(255f, 255f, 255f, 0.1f);
     public static bool one_time;
-    //public static bool first_try;
-    private float continue_time;
 
     public static int level;
     public static int best_score;
@@ -40,16 +38,19 @@ public class GameControllerScript : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.GetInt("best_score", best_score);
+        if (PlayerPrefs.HasKey("best_score"))
+        {
+            PlayerPrefs.SetInt("best_score", best_score);
+        }
+
     }
+    
 
     
     // Start is called before the first frame update
     void Start()
     {
         one_time = true;
-        //first_try = true;
-        continue_time = 9f;
 
         level = 0;
         CameraHolder.camera_speed = 1f;

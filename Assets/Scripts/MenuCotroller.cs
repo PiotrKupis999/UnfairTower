@@ -124,6 +124,11 @@ public class MenuCotroller : MonoBehaviour
         GameControllerScript.is_moving = false;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void ResetScore()
     {
         GameControllerScript.best_score = 0;
