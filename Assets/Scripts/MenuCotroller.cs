@@ -83,17 +83,18 @@ public class MenuCotroller : MonoBehaviour
     public void CountineGame()
     {
         
-        if (!Advertisement.isShowing)
+        while (Advertisement.isShowing)
         {
-            Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
-            GameControllerScript.is_moving = true;
-            BrokerScript.fall = false;
-            GameControllerScript.first_try = false;
-            GameControllerScript.one_time = true;
+            Debug.Log("czekaj");
         }
 
-        
-        
+        Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
+        GameControllerScript.is_moving = true;
+        BrokerScript.fall = false;
+        GameControllerScript.first_try = false;
+        GameControllerScript.one_time = true;
+
+
     }
     /*
     public void PlayAd()
