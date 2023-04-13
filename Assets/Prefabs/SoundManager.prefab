@@ -143,4 +143,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stepSound_clip: {fileID: 8300000, guid: af8aea811db82da4a937c623d9932ef0, type: 3}
   clickSound_clip: {fileID: 8300000, guid: 1b34a74e316098646884c26853a21b8a, type: 3}
-  music_clip: {fileID: 8300000, guid: b075028f873e0714f93ee05738ad5e9c, type: 3}
+  music_clip: {fileID: 8300000, guid: af8aea811db82da4a937c623d9932ef0, type: 3}

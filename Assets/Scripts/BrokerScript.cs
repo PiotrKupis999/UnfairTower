@@ -31,6 +31,7 @@ public class BrokerScript : MonoBehaviour
 
 
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
+            PlayerPrefs.Save();
 
             RestartingScript.playerEndPosition = collision.gameObject.transform.position;
             //GameControllerScript.level = 0;

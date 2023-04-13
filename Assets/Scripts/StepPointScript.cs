@@ -34,6 +34,11 @@ public class StepPointScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             GameControllerScript.level++;
+
+            if (GameControllerScript.level % 50 == 0)
+            {
+                CameraHolder.camera_speed += 0.5f;
+            }
             soundManager.PlaySound(SoundManagerScript.Sounds.stepSound);
             Destroy(this.gameObject);
         }
