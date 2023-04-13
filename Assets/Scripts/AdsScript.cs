@@ -22,6 +22,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
     public static event DebugEvent OnDebugLog;
 
 
+
     private void Start()
     {
         Initialize();

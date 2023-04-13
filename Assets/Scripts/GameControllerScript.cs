@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -31,7 +31,7 @@ public class GameControllerScript : MonoBehaviour
 
     private Color transparency = new(255f, 255f, 255f, 0.1f);
     public static bool one_time;
-    public static bool first_try;
+    //public static bool first_try;
     private float continue_time;
 
     public static int level;
@@ -48,10 +48,11 @@ public class GameControllerScript : MonoBehaviour
     void Start()
     {
         one_time = true;
-        first_try = true;
+        //first_try = true;
         continue_time = 9f;
 
         level = 0;
+        CameraHolder.camera_speed = 1f;
         audioSource = GetComponent<AudioSource>();
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
     }
@@ -105,24 +106,7 @@ public class GameControllerScript : MonoBehaviour
 
         }
 
-        if (GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
-        {
 
-            continue_time -= Time.deltaTime;
-            GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = Mathf.Clamp(Mathf.CeilToInt(continue_time), 0, 9) + "  continue";
-
-            if (continue_time<0)
-            {
-                GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
-
-            }
-
-        }
-        else if (GameObject.FindGameObjectWithTag("ContinueButton") != null && !first_try)
-        {
-            GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
-
-        }
 
 
 

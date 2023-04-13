@@ -3115,6 +3115,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3222777213118794012, guid: 2c9cb75745d890f428ff1fd032ba1799, type: 3}
+      propertyPath: jump_force
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222777213118794012, guid: 2c9cb75745d890f428ff1fd032ba1799, type: 3}
+      propertyPath: jump_force2
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3222777213118794013, guid: 2c9cb75745d890f428ff1fd032ba1799, type: 3}
       propertyPath: m_RootOrder
       value: 1
