@@ -20,6 +20,7 @@ public class RestartingScript : MonoBehaviour
     {
         if (BrokerScript.fall)
         {
+            
             Vector3 endPosition = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + 2f, playerEndPosition.z);
 
             float percentageComplete = elapsedTime / desiredDuration;
