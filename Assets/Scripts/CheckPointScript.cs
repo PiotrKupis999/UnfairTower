@@ -7,15 +7,10 @@ public class CheckPointScript : MonoBehaviour
     public static bool make_steps = false;
     public Camera cam;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        //chech point's movement
         float y = cam.transform.position.y + 5.50f;
 
         transform.position = new Vector3(transform.position.x, y, transform.position.z);
@@ -23,6 +18,7 @@ public class CheckPointScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //making steps
         if (collision.CompareTag("Step"))
         {
             make_steps = true;

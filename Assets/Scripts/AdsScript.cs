@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
-    private string GAME_ID = "5241696"; //replace with your gameID from dashboard. note: will be different for each platform.
+    private string GAME_ID = "5241696"; 
 
     private const string BANNER_PLACEMENT = "Banner_Android";
     private const string VIDEO_PLACEMENT = "Interstitial_Android";
@@ -26,14 +26,12 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
     private void Start()
     {
         Initialize();
-        //ToggleBanner();
-        //LoadRewardedAd();
+
     }
 
     private void Update()
     {
 
-        //OnUnityAdsAdLoaded("Rewarded_Android");
     }
 
     public void Initialize()
@@ -93,17 +91,12 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     public void OnUnityAdsAdLoaded(string placementId)
     {
-        /*
-        DebugLog($"Load Success: {placementId}");
-        Debug.Log("Ad Loaded: " + placementId);
-        */
+        
         if (placementId.Equals(REWARDED_VIDEO_PLACEMENT))
         {
             Debug.Log("Mozna: " + placementId);
 
-            // Configure the button to call the ShowAd() method when clicked:
             ShowRewardedAd();
-            // Enable the button for users to click:
         }
     }
 

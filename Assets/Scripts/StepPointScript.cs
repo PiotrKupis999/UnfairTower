@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class StepPointScript : MonoBehaviour
 {
+    //invisible steps for counting points
 
     public GameObject player;
     public SoundManagerScript soundManager;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player.GetComponent<Rigidbody2D>().velocity.y <= 0)
@@ -25,7 +24,6 @@ public class StepPointScript : MonoBehaviour
         else
         {
             GetComponent<Collider2D>().isTrigger = false;
-
         }
     }
 

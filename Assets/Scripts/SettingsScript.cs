@@ -9,9 +9,6 @@ public class SettingsScript : MonoBehaviour
     public TextMeshProUGUI text2;
 
 
-    // Start is called before the first frame update
-
-
     private void Start()
     {
         if (MenuCotroller.music_settings == 1)

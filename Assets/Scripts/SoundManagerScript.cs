@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-
-
     public enum Sounds
     {
         stepSound,
         clickSound,
+        fallSound,
         music
     }
 
     AudioSource audiosrc;
 
+    [Header("AudioClips")]
     public AudioClip stepSound_clip;
     public AudioClip clickSound_clip;
+    public AudioClip fallSound_clip;
     public AudioClip music_clip;
 
     public static bool soundsEnable = true;
@@ -34,12 +35,10 @@ public class SoundManagerScript : MonoBehaviour
     {
         audiosrc = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
-        //PlayMusic();
     }
 
     public void PlayMusic()
     {
-        
         audiosrc.Play();
     }
 
@@ -60,16 +59,9 @@ public class SoundManagerScript : MonoBehaviour
             case Sounds.clickSound:
                 audiosrc.PlayOneShot(clickSound_clip);
                 break;
-                /*
-            case Sounds.music:
-                audiosrc.PlayOneShot(music_clip);
+            case Sounds.fallSound:
+                audiosrc.PlayOneShot(fallSound_clip);
                 break;
-                */
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -7,33 +7,21 @@ public class CameraHolder : MonoBehaviour
 
     public GameObject player;
     public static float camera_speed = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        //camera's movement
+
         float y = player.transform.position.y;
+
         if (y > transform.position.y + 2.5f)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, y, transform.position.z), Time.deltaTime*2);
-            //transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
         else if (GameControllerScript.is_moving)
         {
             transform.position += Vector3.up * camera_speed * Time.deltaTime;
         }
-        /*
-        if((GameControllerScript.level + 1) % 10 == 0)
-        {
-            camera_speed *= 1.5f;
-
-        }
-        */
-
 
     }
 }
