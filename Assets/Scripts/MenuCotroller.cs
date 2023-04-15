@@ -22,6 +22,7 @@ public class MenuCotroller : MonoBehaviour
     public static int sound_settings;
     static bool first_try;
     private float continue_time = 9f;
+    static int num_of_trials = 0;
     static ContinueButtonModes mode;
 
     private void Start()
@@ -33,10 +34,18 @@ public class MenuCotroller : MonoBehaviour
         if (PlayerPrefs.HasKey("music_settings"))
         {
             music_settings = PlayerPrefs.GetInt("music_settings");
+            if (music_settings == 1)
+            {
+                soundManager.StopMusic();
+            }
         }
         if (PlayerPrefs.HasKey("sound_settings"))
         {
             sound_settings = PlayerPrefs.GetInt("sound_settings");
+            if (sound_settings == 1)
+            {
+                SoundManagerScript.soundsEnable = false;
+            }
         }
     }
 
@@ -49,6 +58,17 @@ public class MenuCotroller : MonoBehaviour
     // Start is called before the first frame update
     public void LoadScene(int index)
     {
+        SceneManager.LoadScene(index);
+    }
+
+    public void TryAgain(int index)
+    {
+        num_of_trials++;
+        if (num_of_trials % 5 == 0)
+        {
+            GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().LoadNonRewardedAd();
+            GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().ShowNonRewardedAd();
+        }
         SceneManager.LoadScene(index);
     }
 
@@ -106,9 +126,10 @@ public class MenuCotroller : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResetScore()
+    public void ResetScore(GameObject resetButton)
     {
-        GameControllerScript.best_score = 0;
+        resetButton.GetComponentInChildren<Text>().text = "nah, you can't :)";
+        resetButton.GetComponent<Button>().interactable = false;
     }
 
     public void CountineGame()

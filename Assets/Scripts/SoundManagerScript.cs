@@ -8,6 +8,7 @@ public class SoundManagerScript : MonoBehaviour
     {
         stepSound,
         clickSound,
+        fallSound,
         music
     }
 
@@ -16,6 +17,7 @@ public class SoundManagerScript : MonoBehaviour
     [Header("AudioClips")]
     public AudioClip stepSound_clip;
     public AudioClip clickSound_clip;
+    public AudioClip fallSound_clip;
     public AudioClip music_clip;
 
     public static bool soundsEnable = true;
@@ -56,6 +58,9 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case Sounds.clickSound:
                 audiosrc.PlayOneShot(clickSound_clip);
+                break;
+            case Sounds.fallSound:
+                audiosrc.PlayOneShot(fallSound_clip);
                 break;
         }
     }

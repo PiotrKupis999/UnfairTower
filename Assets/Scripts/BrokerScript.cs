@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class BrokerScript : MonoBehaviour
 {
     public static bool fall;
+    SoundManagerScript soundManager;
 
     void Start()
     {
         fall = false;
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
+
     }
 
     void Update()
@@ -23,6 +26,7 @@ public class BrokerScript : MonoBehaviour
         //stop game and save best score
         if (collision.CompareTag("Player"))
         {
+            soundManager.PlaySound(SoundManagerScript.Sounds.fallSound);
             GameControllerScript.is_moving = false;
 
             PlayerPrefs.SetInt("best_score", GameControllerScript.best_score);
