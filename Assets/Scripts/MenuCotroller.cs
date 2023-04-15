@@ -26,45 +26,23 @@ public class MenuCotroller : MonoBehaviour
 
     private void Start()
     {
-
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManagerScript>();
         first_try = true;
         mode = ContinueButtonModes.PlayAdMode;
+
+        if (PlayerPrefs.HasKey("music_settings"))
+        {
+            music_settings = PlayerPrefs.GetInt("music_settings");
+        }
+        if (PlayerPrefs.HasKey("sound_settings"))
+        {
+            sound_settings = PlayerPrefs.GetInt("sound_settings");
+        }
     }
 
     private void Update()
     {
-        Debug.Log(mode);
-        switch (mode)
-        {
-            case ContinueButtonModes.PlayAdMode:
-                if (GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
-                {
-
-                    continue_time -= Time.deltaTime;
-                    GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ watch ad " + Mathf.Clamp(Mathf.CeilToInt(continue_time), 0, 9);
-
-                    if (continue_time < 0)
-                    {
-                        GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
-
-                    }
-
-                }
-                else if (GameObject.FindGameObjectWithTag("ContinueButton") != null && !first_try)
-                {
-                    GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
-                }
-                break;
-            case ContinueButtonModes.ContinueGameMode:
-
-                GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = true;
-
-                GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ Continue";
-                break;
-        }
-
-
+        RestartBarAd();
     }
 
 
@@ -74,9 +52,8 @@ public class MenuCotroller : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-    public void SwitchButtonMusic(TextMeshProUGUI text)
+    public void SwitchButtonMusic(TextMeshProUGUI text) 
     {
-
         if (music_settings == 1)
         {
             text.GetComponent<TextMeshProUGUI>().enabled = false;
@@ -88,15 +65,14 @@ public class MenuCotroller : MonoBehaviour
             text.GetComponent<TextMeshProUGUI>().enabled = true;
             soundManager.StopMusic();
             music_settings = 1;
-
         }
-        
+        PlayerPrefs.SetInt("music_settings", music_settings);
+        PlayerPrefs.Save();
 
     }
 
     public void SwitchButtonSounds(TextMeshProUGUI text)
     {
-
         if (sound_settings == 1)
         {
             text.GetComponent<TextMeshProUGUI>().enabled = false;
@@ -108,8 +84,9 @@ public class MenuCotroller : MonoBehaviour
             text.GetComponent<TextMeshProUGUI>().enabled = true;
             SoundManagerScript.soundsEnable = false;
             sound_settings = 1;
-            
         }
+        PlayerPrefs.SetInt("sound_settings", sound_settings);
+        PlayerPrefs.Save();
 
 
     }
@@ -136,67 +113,50 @@ public class MenuCotroller : MonoBehaviour
 
     public void CountineGame()
     {
-
-
         switch (mode)
         {
             case ContinueButtonModes.PlayAdMode:
                 mode = ContinueButtonModes.ContinueGameMode;
-                
-
                 GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().LoadRewardedAd();
                 GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().ShowRewardedAd();
                 first_try = false;
                 break;
+
             case ContinueButtonModes.ContinueGameMode:
                 Destroy(GameObject.FindGameObjectWithTag("RestartBars"));
                 GameControllerScript.is_moving = true;
                 BrokerScript.fall = false;
                 GameControllerScript.one_time = true;
                 mode = ContinueButtonModes.PlayAdMode;
-
                 break;
         }
-        
-
-
     }
-    /*
-    public void PlayAd()
+
+    public void RestartBarAd() 
     {
-        OnUnityAdsAdLoaded("Rewarded_Android");
-    }
+        switch (mode)
+        {
+            case ContinueButtonModes.PlayAdMode:
+                if (GameObject.FindGameObjectWithTag("ContinueButton") != null && first_try)
+                {
+                    continue_time -= Time.deltaTime;
+                    GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ watch ad " + Mathf.Clamp(Mathf.CeilToInt(continue_time), 0, 9);
+                    if (continue_time < 0)
+                    {
+                        GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
 
-    public void OnUnityAdsAdLoaded(string adUnitId)
-    {
-        // Optionally execute code if the Ad Unit successfully loads content.
-        Advertisement.Show(adUnitId);
+                    }
+                }
+                else if (GameObject.FindGameObjectWithTag("ContinueButton") != null && !first_try)
+                {
+                    GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
+                }
+                break;
 
+            case ContinueButtonModes.ContinueGameMode: //if the ad had been watched -> make just 'continue' button
+                GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = true;
+                GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ Continue";
+                break;
+        }
     }
-
-    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnUnityAdsShowStart(string placementId)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnUnityAdsShowClick(string placementId)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
-    {
-        throw new System.NotImplementedException();
-    }
-    */
 }

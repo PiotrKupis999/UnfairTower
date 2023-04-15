@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SoundManagerScript : MonoBehaviour
 {
-
-
     public enum Sounds
     {
         stepSound,
@@ -15,6 +13,7 @@ public class SoundManagerScript : MonoBehaviour
 
     AudioSource audiosrc;
 
+    [Header("AudioClips")]
     public AudioClip stepSound_clip;
     public AudioClip clickSound_clip;
     public AudioClip music_clip;
@@ -34,12 +33,10 @@ public class SoundManagerScript : MonoBehaviour
     {
         audiosrc = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
-        //PlayMusic();
     }
 
     public void PlayMusic()
     {
-        
         audiosrc.Play();
     }
 
@@ -60,16 +57,6 @@ public class SoundManagerScript : MonoBehaviour
             case Sounds.clickSound:
                 audiosrc.PlayOneShot(clickSound_clip);
                 break;
-                /*
-            case Sounds.music:
-                audiosrc.PlayOneShot(music_clip);
-                break;
-                */
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
