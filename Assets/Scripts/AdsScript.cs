@@ -14,7 +14,7 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     [SerializeField] private BannerPosition bannerPosition = BannerPosition.BOTTOM_CENTER;
 
-    private bool testMode = true;
+    private bool testMode = false;
     private bool showBanner = false;
 
     //utility wrappers for debuglog
