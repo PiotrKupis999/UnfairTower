@@ -172,12 +172,29 @@ public class MenuCotroller : MonoBehaviour
                 {
                     GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
                 }
+                wait(5);
+
                 break;
 
             case ContinueButtonModes.ContinueGameMode: //if the ad had been watched -> make just 'continue' button
                 GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = true;
                 GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ Continue";
                 break;
+        }
+    }
+
+    IEnumerator wait(float waitTime)
+    {
+        float counter = 0;
+
+        while (counter < waitTime)
+        {
+            //Increment Timer until counter >= waitTime
+            counter += Time.deltaTime;
+            Debug.Log("We have waited for: " + counter + " seconds");
+
+            //Wait for a frame so that Unity doesn't freeze
+            yield return null;
         }
     }
 }

@@ -18,6 +18,7 @@ public class RestartingScript : MonoBehaviour
             float percentageComplete = elapsedTime / desiredDuration;
             Player.transform.position = Vector3.Lerp(playerEndPosition, endPosition, percentageComplete);
             elapsedTime += Time.deltaTime;
+            Player.GetComponent<Rigidbody2D>().angularVelocity = 0f;
         }
         else
         {

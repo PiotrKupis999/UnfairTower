@@ -33,9 +33,9 @@ public class StepPointScript : MonoBehaviour
         {
             GameControllerScript.level++;
 
-            if (GameControllerScript.level % 50 == 0)
+            if (GameControllerScript.level % 50 == 0 && GameControllerScript.level < 355)
             {
-                CameraHolder.camera_speed += 0.5f;
+                CameraHolder.camera_speed += 0.33f;
             }
             soundManager.PlaySound(SoundManagerScript.Sounds.stepSound);
             Destroy(this.gameObject);
