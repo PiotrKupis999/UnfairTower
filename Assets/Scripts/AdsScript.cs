@@ -45,6 +45,9 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     public void ToggleBanner() 
     {
+        Advertisement.Banner.SetPosition(bannerPosition);
+        Advertisement.Banner.Show(BANNER_PLACEMENT);
+        /*
         showBanner = !showBanner;
 
         if (showBanner)
@@ -55,7 +58,9 @@ public class AdsScript : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
         else
         {
             Advertisement.Banner.Hide(false);
+
         }
+        */
     }
 
     public void LoadRewardedAd()

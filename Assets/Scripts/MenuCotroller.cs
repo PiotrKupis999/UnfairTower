@@ -64,9 +64,10 @@ public class MenuCotroller : MonoBehaviour
     public void TryAgain(int index)
     {
         num_of_trials++;
-        if (num_of_trials % 5 == 0)
+        if (num_of_trials % 3 == 0)
         {
             GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().LoadNonRewardedAd();
+            wait(3);
             GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().ShowNonRewardedAd();
         }
         SceneManager.LoadScene(index);
@@ -139,6 +140,8 @@ public class MenuCotroller : MonoBehaviour
             case ContinueButtonModes.PlayAdMode:
                 mode = ContinueButtonModes.ContinueGameMode;
                 GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().LoadRewardedAd();
+                GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "Wait";
+                wait(5);
                 GameObject.FindGameObjectWithTag("AdsManager").GetComponent<AdsScript>().ShowRewardedAd();
                 first_try = false;
                 break;
@@ -172,12 +175,28 @@ public class MenuCotroller : MonoBehaviour
                 {
                     GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = false;
                 }
+
                 break;
 
             case ContinueButtonModes.ContinueGameMode: //if the ad had been watched -> make just 'continue' button
                 GameObject.FindGameObjectWithTag("ContinueButton").GetComponent<Button>().interactable = true;
                 GameObject.FindGameObjectWithTag("ContinueButton").GetComponentInChildren<Text>().text = "▷ Continue";
                 break;
+        }
+    }
+
+    IEnumerator wait(float waitTime)
+    {
+        float counter = 0;
+
+        while (counter < waitTime)
+        {
+            //Increment Timer until counter >= waitTime
+            counter += Time.deltaTime;
+            Debug.Log("We have waited for: " + counter + " seconds");
+
+            //Wait for a frame so that Unity doesn't freeze
+            yield return null;
         }
     }
 }
