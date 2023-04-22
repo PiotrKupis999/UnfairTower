@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D coll;
     private int x_jump = 3;
-    private bool jumpable = true;
+    public static bool jumpable = true;
 
 
     void Start()
@@ -72,7 +72,7 @@ public class PlayerScript : MonoBehaviour
             collision.isTrigger = true;
             jumpable = false;
         }
-        
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -84,6 +84,8 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
+
+
 
 
     private void Jump()
