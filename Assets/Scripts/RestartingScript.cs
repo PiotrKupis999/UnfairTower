@@ -19,6 +19,7 @@ public class RestartingScript : MonoBehaviour
             Player.transform.position = Vector3.Lerp(playerEndPosition, endPosition, percentageComplete);
             elapsedTime += Time.deltaTime;
             Player.GetComponent<Rigidbody2D>().angularVelocity = 0f;
+            Player.GetComponent<Rigidbody2D>().rotation = 0f;
         }
         else
         {
