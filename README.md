@@ -13,5 +13,5 @@ The project includes:
 - Score system
 
 # Publishing place:
-Google Play Store
+Google Play Store: 
 https://play.google.com/store/apps/details?id=com.Kupisoft.UnfairTower
