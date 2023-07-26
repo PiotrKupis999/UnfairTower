@@ -22,3 +22,4 @@ https://play.google.com/store/apps/details?id=com.Kupisoft.UnfairTower
 - the best score updates while the current score is higher
 - the camera speed depends on the current score
 
+UnfairTower.mp4 shows how the game works.
